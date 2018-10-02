@@ -1,4 +1,6 @@
 # showmessage
+Projeto para trabalho escolar da minha filha criado em Vue.js.
+
 
 ## Project setup
 ```
