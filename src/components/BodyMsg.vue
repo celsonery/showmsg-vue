@@ -19,23 +19,26 @@
 
 <script>
     import { eventBus } from "../main"
-    import * as easings from 'vuetify/es5/util/easing-patterns'
 
     export default {
         name: "body-msg",
 
         data() {
             return {
-                mensagens: [],
-                easings: Object.keys(easings)
+                mensagens: []
             }
         },
 
         mounted() {
             var vm = this;
+
             eventBus.$on('send-message', function (msg) {
                 vm.recvMsg(msg);
             });
+
+            eventBus.$on('clear-messages', function () {
+                vm.clearMsg();
+            })
         },
 
         updated() {
@@ -45,6 +48,9 @@
         methods: {
             recvMsg(msg) {
                 this.mensagens.push(msg);
+            },
+            clearMsg() {
+                this.mensagens = [];
             },
             scrollToEnd() {
                 var container = document.querySelector('.scroll');
@@ -59,12 +65,13 @@
     #scrolled-content {
         max-height: 510px;
         overflow: scroll;
+        margin-bottom: 10px;
     }
     .msg_whatsapp {
         padding-left: 3px;
         padding-right: 3px;
         float: left;
-        background-color: aliceblue;
+        background-color: #ffffff;
         border-radius: 5px;
         background-size: auto;
     }
@@ -75,8 +82,6 @@
 
     .txt {
         border: 1px solid transparent;
-        /*padding-right: 5px;*/
-        /*font-size: 12px;*/
     }
 
     .hora {

@@ -90,16 +90,25 @@
             }
         },
 
+        mounted() {
+            var vm = this;
+
+            eventBus.$on('clear-messages', function () {
+                vm.resetContador();
+            })
+        },
+
         methods: {
             sendMsg() {
-                // Verifica se o contador esta no fim da lista.
                 if (this.contador != this.items.length) {
-                    this.items[this.contador].hora = new Date() // Coloca a hora na mensagem.
-
-                    eventBus.$emit('send-message', this.items[this.contador]); // envia um evento para o eventBus para outro componente pegar.
-
-                    this.contador = parseInt(this.contador) + 1; // incrementa o contador em 1 passo.
+                    this.items[this.contador].hora = new Date();
+                    eventBus.$emit('send-message', this.items[this.contador]);
+                    this.contador = parseInt(this.contador) + 1;
                 }
+            },
+
+            resetContador(){
+                this.contador = 0;
             }
         }
     }
@@ -107,12 +116,11 @@
 
 <style scoped>
     .send-text {
-        background-color: white;
+        background-color: #ffffff;
         border-radius: 25px;
         height: 50px;
         padding: 10px;
         padding-right: 25px;
-        /*margin: 2px;*/
     }
 
     .btn_mic {

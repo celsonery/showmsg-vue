@@ -18,14 +18,7 @@
             </v-btn>
             <v-list>
                 <v-list-tile>
-                    <v-list-tile-title>Reiniciar</v-list-tile-title>
-                </v-list-tile>
-                <v-list-tile>
-                    <v-list-tile-title>Opções</v-list-tile-title>
-                </v-list-tile>
-                <v-divider></v-divider>
-                <v-list-tile>
-                    <v-list-tile-title>Sair</v-list-tile-title>
+                    <v-list-tile-title @click="reiniciar()">Reiniciar</v-list-tile-title>
                 </v-list-tile>
             </v-list>
         </v-menu>
@@ -33,12 +26,14 @@
 </template>
 
 <script>
+    import { eventBus } from "../main";
+
     export default {
         name: "toolbar",
 
         methods: {
-            sair(){
-                navigator.app.exitApp();
+            reiniciar(){
+                eventBus.$emit('clear-messages');
             }
         }
     }

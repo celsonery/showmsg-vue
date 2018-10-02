@@ -25,7 +25,7 @@
 </script>
 <style scoped>
     .bodyapp {
-        background-image: url("./assets/wallpaper0.jpg");
+        background-image: url("./assets/wallpaper.jpg");
         background-size: cover;
     }
     .tools {
