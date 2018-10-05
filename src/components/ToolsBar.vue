@@ -20,6 +20,9 @@
                 <v-list-tile>
                     <v-list-tile-title @click="reiniciar()">Reiniciar</v-list-tile-title>
                 </v-list-tile>
+                <v-list-tile>
+                    <v-list-tile-title @click.stop="fullscreen()">Fullscreen</v-list-tile-title>
+                </v-list-tile>
             </v-list>
         </v-menu>
     </v-toolbar>
@@ -34,6 +37,9 @@
         methods: {
             reiniciar(){
                 eventBus.$emit('clear-messages');
+            },
+            fullscreen(){
+                this.$emit('full-screen');
             }
         }
     }
